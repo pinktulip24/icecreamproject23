@@ -1,0 +1,381 @@
+$bubble-count: 50;
+$sway-type: ("sway-left-to-right", "sway-right-to-left");
+
+@keyframes gradient {
+  0% {
+    background-position: 0 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
+}
+
+@keyframes float-up {
+  100% {
+    transform: translateY(-175vh);
+  }
+}
+
+.hero {
+  background: linear-gradient(
+    126deg,
+    var(--primary1-color-pink),
+    #9f465b,
+    #f6a7bb,
+    #af6678
+  );
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  width: 100%;
+  height: auto;
+  padding-top: 10px;
+  position: relative;
+  overflow: hidden;
+
+  &__inner {
+    width: 100%;
+    height: 502px;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    background: radial-gradient(
+      circle,
+      var(--secondary-color-pink-dark) 50%,
+      var(--transparent) 50%
+    );
+    background-position: left center;
+    background-repeat: no-repeat;
+    background-size: 476px 476px;
+
+    &--right {
+      display: none;
+    }
+
+    &--left {
+      display: flex;
+      flex-direction: column;
+      z-index: 1;
+      position: relative;
+      flex: 1 1 100%;
+
+      &-description {
+        display: none;
+      }
+    }
+
+    &--text {
+      position: relative;
+      z-index: 5;
+      width: 100%;
+      height: 100%;
+      @extend %flex-column-center;
+      align-items: flex-start;
+      gap: 20px;
+      margin-left: 20px;
+    }
+
+    &__list {
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+    }
+  }
+
+  &__bubbles {
+    position: absolute;
+    width: 99vw;
+    height: 501px;
+    overflow: hidden;
+
+    @for $i from 1 through $bubble-count {
+      &--sg:nth-child(#{$i}) {
+        --bubble-left-offset: #{random(100)}vw;
+        --bubble-radius: #{random(10) + 1}vw;
+        --bubble-float-duration: #{random(7) + 6}s;
+        --bubble-sway-duration: #{random(3) + 4}s;
+        --bubble-float-delay: #{random(4)}s;
+        --bubble-sway-delay: #{random(4)}s;
+        --bubble-sway-type: #{nth($sway-type, random(length($sway-type)))};
+      }
+    }
+
+    &--sg {
+      position: absolute;
+      left: var(--bubble-left-offset);
+      bottom: -75%;
+      display: block;
+      width: var(--bubble-radius);
+      height: var(--bubble-radius);
+      border-radius: 50%;
+      animation: float-up var(--bubble-float-duration) var(--bubble-float-delay)
+        ease-in infinite;
+
+      &:before {
+        position: absolute;
+        content: "";
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(219, 239, 240, 0.3);
+        border-radius: inherit;
+        animation: var(--bubble-sway-type) var(--bubble-sway-duration)
+          var(--bubble-sway-delay) ease-in-out alternate infinite;
+      }
+    }
+  }
+
+  &__photo {
+    width: 171px;
+    height: 410px;
+    position: absolute;
+    bottom: 0;
+    right: 32px;
+    z-index: 3;
+  }
+
+  &__title {
+    font-family: var(--second-font);
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--white-color);
+    z-index: 9999;
+    max-width: 218px;
+
+    &--span {
+      color: var(--brand-color);
+      font-size: 48px;
+    }
+  }
+
+  &__button {
+    &--red {
+      @include button-style-hero(var(--brand-color), var(--white-color));
+
+      & > a {
+        text-decoration: none;
+        color: var(--white-color); 
+      }
+
+      &:hover {
+        transform: translateY(-15px);
+        font-weight: 700;
+        transition: 1000ms cubic-bezier(0.4, 0, 0.2, 1);
+      }
+    }
+
+    &--white {
+      @include button-style-hero(var(--white-color), var(--brand-color));
+
+      &:hover {
+        transform: translateY(-15px);
+        font-weight: 700;
+        transition: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .hero {
+    &__inner {
+      background-position: top 2rem right 4.7rem;
+      background-size: 485px 485px;
+      &--right {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+        margin: 16px 20px 0 0;
+        gap: 16px;
+        &-numbers {
+          position: relative;
+          top: 10%;
+          right: 0;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        }
+      }
+      &--left {
+        flex: 2;
+        &-description {
+          display: flex;
+          align-items: end;
+          margin-top: 3rem;
+          div {
+            width: 140px;
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+            color: var(--white-color);
+            font-size: 10px;
+            line-height: 1.5;
+          }
+        }
+        &--img {
+          width: 152px;
+          height: 154px;
+        }
+      }
+      &--text {
+        margin-top: 3rem;
+      }
+      &--link {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background-color: var(--white-color);
+        &:hover {
+          transform: rotate(90deg) scale(1.5);
+          transition: 1000ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+      }
+      &--icon {
+        width: 10px;
+        height: 10px;
+      }
+      &--number {
+        font-family: var(--second-font);
+        font-size: 28px;
+        line-height: 1.14;
+        text-align: right;
+        letter-spacing: 0.04em;
+        color: var(--brand-color);
+        z-index: 2;
+      }
+      &--fresh {
+        font-size: 8px;
+        line-height: 1.25;
+        text-align: right;
+        color: var(--white-color);
+      }
+    }
+    &__photo {
+      width: 143px;
+      height: 336px;
+      right: 0;
+      bottom: 0;
+      max-width: 100%;
+      height: auto;
+    }
+    &__title {
+      font-size: 22px;
+      max-width: 180px;
+      &--span {
+        font-size: 38px;
+      }
+    }
+    &__right {
+      &--image {
+        width: 190px;
+        height: 150px;
+        background-image: url("../images/1headerMenu/tasty.png");
+        background-repeat: no-repeat;
+        margin-top: auto;
+        margin-left: auto;
+      }
+    }
+    &__circle--small {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background-color: var(--white-color);
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      z-index: 1;
+    }
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .hero {
+    &__bubbles {
+      height: 735px;
+      overflow: hidden;
+    }
+    &__button {
+      &--red,
+      &--white {
+        padding: 10px 20px;
+        font-size:18px;
+      }
+    }
+    &__inner {
+      background-position: right 270px bottom 5px;
+      background-size: 580px 580px;
+      height: 100%;
+      &__list {
+        gap: 12px;
+      }
+      &--left {
+        &-description {
+          margin-bottom: 60px;
+          div {
+            color: var(--white-color);
+            font-size: 16px;
+            line-height: 1.31;
+            gap: 20px;
+          }
+        }
+        &--img {
+          max-width: 213px;
+          max-height: 216px;
+        }
+      }
+      &--text {
+        width: 300px;
+      }
+      &--right {
+        margin: 68px 35px 0 0;
+        gap: 15px;
+      }
+      &--number {
+        font-size: 46px;
+      }
+      &--fresh {
+        font-size: 14px;
+      }
+      &--link {
+        width: 25px;
+        height: 25px;
+        margin-left: 22px;
+      }
+    }
+    &__photo {
+      width: 176px;
+      height: 457px;
+    }
+    &__title {
+      font-size: 38px;
+      line-height: 1.15;
+      max-width: 280px;
+      margin-top: 60px;
+      &--span {
+        font-size: 48px;
+      }
+    }
+    &__circle--small {
+      width: 30px;
+      height: 30px;
+      top: -10px;
+      right: -10px;
+    }
+    &__right--image {
+      width: 304px;
+      height: 241px;
+      background-image: url("../images/1headerMenu/tasty2x.png");
+    }
+  }
+}

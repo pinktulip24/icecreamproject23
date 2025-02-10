@@ -1,0 +1,149 @@
+.gallery {
+  overflow: hidden;
+  padding-top: 60px;
+
+  &__container {
+    max-width: 320px;
+    margin: 0 auto;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: row;
+    gap: 2.53px;
+    z-index: 2;
+    margin-left: 10px;
+
+    & > .gallery__list__item {
+      position: relative;
+
+      &:nth-child(1) {
+        top: 20px;
+      }
+      &:nth-child(3) {
+        top: -30px;
+      }
+      &:nth-child(5) {
+        top: -15px;
+      }
+      &:nth-child(6) {
+        top: 15px;
+      }
+    }
+  }
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 2.52px;
+
+    &:nth-child(2) {
+      gap: 1.8px;
+    }
+  }
+
+  &__img {
+    width: 43.59px;
+    height: 43.86px;
+    border-radius: 8px;
+    transition: transform 0.3s ease-in-out;
+
+    &:hover {
+      @include gallery-effect;
+    }
+  }
+
+  &__item {
+    width: 43.59px;
+    height: 43.86px;
+
+    &--large {
+      width: 89.4px;
+      height: 89.61px;
+
+      &:hover {
+        @include gallery-effect;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .gallery {
+    &__container {
+      max-width: 768px;
+    }
+    &__inner {
+      gap: 6.05px;
+      &:nth-child(2) {
+        gap: 4.54px;
+      }
+      & .gallery__item {
+        width: 104.62px;
+        height: 105.14px;
+      }
+      & .gallery__item--large {
+        width: 214.55px;
+        height: 214.81px;
+      }
+    }
+    &__img {
+      width: 104.62px;
+      height: 105.14px;
+      border-radius: 20px;
+      &--large {
+        width: 214.55px;
+        height: 214.81px;
+      }
+    }
+    &__list {
+      gap: 6.07px;
+      &__item {
+        &:nth-child(1) {
+          top: 45px;
+        }
+        &:nth-child(3) {
+          top: -70px;
+        }
+        &:nth-child(6) {
+          top: 55px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .gallery {
+    &__container {
+      max-width: 1013px;
+    }
+    &__inner {
+      gap: 9px;
+    }
+    &__img {
+      width: 138px;
+      height: 108px;
+      &--large {
+        width: 283px;
+        height: 215px;
+      }
+    }
+    &__list {
+      gap: 7px;
+      display: flex;
+      justify-content: center;
+      &__item {
+        &:nth-child(1) {
+          top: 50px;
+        }
+        &:nth-child(3) {
+          top: -85px;
+        }
+        &:nth-child(6) {
+          top: 75px;
+        }
+      }
+    }
+  }
+}

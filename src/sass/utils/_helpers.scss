@@ -1,0 +1,61 @@
+%text-common {
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1.14;
+}
+
+%font-title {
+  font-family: var(--second-font);
+  font-size: 34px;
+}
+
+%font-subtitle {
+  font-size: 18px;
+  color: var(--primary1-color-pink);
+  margin: 60px 0 15px 0;
+}
+%flex-column-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+%flipper-base {
+  width: 280px;
+  height: 520px;
+  border-radius: 25px;
+}
+%flipper-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+%flipper-text-styles {
+  font-weight: 800;
+  text-shadow: 1px 1px var(--gray-color);
+}
+
+%footer-title {
+  font-family: var(--second-font);
+  font-size: 18px;
+  line-height: 21px;
+  color: var(--secondary-color-pink);
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-block;
+}
+
+%modal-input {
+  height: 30px;
+  font-size: 15px;
+  text-align: center;
+  border: 1px solid var(--primary1-color-pink);
+}
+
+%placeholder-form {
+  text-align: left;
+  color: var(--text-color);
+  font-style: italic;
+  padding: 0.5rem 1rem;
+}

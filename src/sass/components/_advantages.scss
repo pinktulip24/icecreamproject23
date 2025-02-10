@@ -1,0 +1,123 @@
+@keyframes rotateWithOrigin {
+  0% {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+.advantages {
+  &__section {
+    padding: 40px 0 60px 0;
+    margin-left: 20px;
+  }
+  &__title {
+    visibility: hidden;
+  }
+  &__list {
+    @extend %flex-column-center;
+    flex-wrap: wrap;
+    align-content: start;
+    gap: 92px;
+    &--item {
+      @extend %flex-column-center;
+      align-content: center;
+      position: relative;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      &:before {
+        animation: rotateWithOrigin 3s linear 1s infinite;
+      }
+      &--first {
+        &:before {
+          @include advantages-list; 
+          background-image: url("../images/how-its-made/frame1.svg"); 
+        }
+      }
+      &--second {
+        &:before {
+          @include advantages-list; 
+          background-image: url("../images/how-its-made/frame2.svg"); 
+        }
+      }
+      &--third {
+        &:before {
+          @include advantages-list; 
+          background-image: url("../images/how-its-made/frame3.svg"); 
+        }
+      }
+    }
+    &--title {
+      font-family: var(--second-font);
+      font-size: 36px;
+      font-style: normal;
+      line-height: 1.14;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      text-align: left;
+      color: var(--brand-color);
+      margin-top: 16px;
+    }
+    &--description {
+      display: flex;
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 1.7;
+      letter-spacing: 0;
+      text-align: left;
+      max-width: 230px;
+      color: var(--black-color);
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .advantages {
+    &__list {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content: start;
+      gap: 22px;
+      &--title {
+        font-size: 48px;
+        padding: 16px 0;
+      }
+      &--description {
+        font-size: 12px;
+        text-align: left;
+        max-width: 180px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .advantages {
+    &__section {
+      padding: 40px 0 170px 0;
+    }
+    &__list {
+      display: flex;
+      gap: 115px;
+      &--title {
+        font-size: 58px;
+        padding-bottom: 13px;
+      }
+      &--description {
+        font-size: 16px;
+        max-width: 317px;
+      }
+      &--item {
+        &--first:before,
+        &--second:before,
+        &--third:before {
+          height: 70px;
+          width: 70px;
+          top: -70px;
+        }
+      }
+    }
+  }
+}
