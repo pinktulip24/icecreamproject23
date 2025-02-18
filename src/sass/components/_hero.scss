@@ -30,8 +30,7 @@ $sway-type: ("sway-left-to-right", "sway-right-to-left");
   background-size: 400% 400%;
   animation: gradient 15s ease infinite;
   width: 100%;
-  height: auto;
-  padding-top: 10px;
+  height: auto; 
   position: relative;
   overflow: hidden;
 
@@ -173,7 +172,6 @@ $sway-type: ("sway-left-to-right", "sway-right-to-left");
 
     &--white {
       @include button-style-hero(var(--white-color), var(--brand-color));
-
       &:hover {
         transform: translateY(-15px);
         font-weight: 700;
@@ -308,15 +306,15 @@ $sway-type: ("sway-left-to-right", "sway-right-to-left");
     &__button {
       &--red,
       &--white {
-        padding: 10px 20px;
-        font-size:18px;
+        padding: 10px 15px;
+        font-size:18px; 
       }
     }
     &__inner {
       background-position: right 270px bottom 5px;
       background-size: 580px 580px;
       height: 100%;
-      &__list {
+      &__list { 
         gap: 12px;
       }
       &--left {
